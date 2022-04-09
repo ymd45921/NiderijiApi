@@ -1,35 +1,16 @@
+import api from "./api";
 import logger from "./util/logger";
-import axios from "axios";
-import {stringify} from "querystring";
-import filestream from "./util/filestream";
-
 require('dotenv').config();
 
-const domain = 'https://nideriji.cn';
-
-const instance = axios.create({
-    baseURL: domain,
-    headers: {
-        referer: 'https://nideriji.cn/login/',
-        accept: '*/*'
-    }
-});
-
-const logFile = filestream.create("log.txt");
-
-const form = {
-    csrfmiddlewaretoken: 'WRqneDnRcKEDb0QIaLW8r7hkm6DEpeqe',
-    email: process.env.EMAIL,
-    password: process.env.PASSWORD
-};
-
-const qs = stringify(form);
-
-instance.post('/api/login/', qs).then(res => {
-    console.log(res);
-    logger.ok('Login success.');
-}).catch(e => {
-    // console.log(e);
-    logFile.log(e);
-    logger.err('Request failed.');
+api.login().then(res => {
+    if (res) {
+        logger.msg('Login successful, now show latest diary.');
+        api.diary.latest().then(res => {
+            const diary = res.data.diary;
+            logger.ok(`Got latest diary id: ${diary.id}`)
+            logger.msg(`Date: ${diary.createddate} ${diary.weekday} - ${diary.date_word}`);
+            logger.log(`Content: ${diary.content}`);
+        }).catch(err => logger.err(`Get diary failed.`))
+    } else logger.err('Login unsuccessful.')
 })
+
