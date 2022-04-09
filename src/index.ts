@@ -1,10 +1,9 @@
+import logger from "./util/logger";
+import axios from "axios";
 import {stringify} from "querystring";
+import filestream from "./util/filestream";
 
 require('dotenv').config();
-
-import axios from "axios";
-import * as fs from "fs";
-import * as util from "util";
 
 const domain = 'https://nideriji.cn';
 
@@ -16,12 +15,7 @@ const instance = axios.create({
     }
 });
 
-const logFile = {
-    stream: fs.createWriteStream('log.txt', {flags: 'a'}),
-    log: function(...args: any[]) {
-        this.stream.write(util.format.apply(null, args) + '\n');
-    }
-};
+const logFile = filestream.create("log.txt");
 
 const form = {
     csrfmiddlewaretoken: 'WRqneDnRcKEDb0QIaLW8r7hkm6DEpeqe',
@@ -33,9 +27,9 @@ const qs = stringify(form);
 
 instance.post('/api/login/', qs).then(res => {
     console.log(res);
-    console.log('Login success.');
+    logger.ok('Login success.');
 }).catch(e => {
     // console.log(e);
     logFile.log(e);
-    console.log('Request failed.');
+    logger.err('Request failed.');
 })
