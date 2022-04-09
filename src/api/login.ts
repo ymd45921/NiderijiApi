@@ -15,6 +15,7 @@ const login = (email?: string, password?: string) => {
         if (res.data.token) {
             logger.ok('Login success.');
             xhr.setToken(res.data.token);
+            xhr.setCookie(form.csrfmiddlewaretoken, res.data.token);
             logger.info('csrf token', form.csrfmiddlewaretoken);
             logger.info('token', res.data.token);
         } else logger.err('Login failed.');
