@@ -1,6 +1,6 @@
 {
   "name": "nideriji-api",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "API of Nideriji and Ohshenghuo.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -15,9 +15,11 @@
   "scripts": {
     "build": "rimraf ./build && tsc -d --outDir build",
     "clear": "rimraf ./build && rimraf ./dist",
-    "build:to": "rimraf ./build && tsc -d --outDir",
-    "build:lib": "rimraf ./dist && tsc -d",
-    "build:declare": "rimraf ./dist && tsc --outdir dist --emitDeclarationOnly"
+    "build:to": "tsc -d --outDir",
+    "build:pub": "rimraf ./dist && tsc -d",
+    "build:d": "rimraf ./dist && tsc --outdir dist --emitDeclarationOnly",
+    "release": "yarn build:pub && yarn publish",
+    "pub": "yarn release"
   },
   "devDependencies": {
     "@types/node": "^17.0.25",
