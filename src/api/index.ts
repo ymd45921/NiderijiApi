@@ -1,9 +1,7 @@
-import login from "./login";
-import diary from "./diary";
-import curd from "./curd";
+import webApi from "./web";
 
 const api = {
-    login, diary, curd
+    web: webApi,
 }
 
 export default api;
