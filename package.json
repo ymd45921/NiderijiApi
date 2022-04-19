@@ -1,5 +1,5 @@
 {
-  "name": "NiderijiApi",
+  "name": "nideriji-api-example",
   "version": "0.0.1",
   "description": "API of nideriji and ohshenghuo.",
   "main": "index.js",
@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "yarn build && node build/index.js"
+    "start": "node --require ts-node/register src/index.ts"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
