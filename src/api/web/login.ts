@@ -1,7 +1,6 @@
-import xhr from "./xhr";
+import xhr from "../../configs/xhr";
 import csrf from "../../util/csrf";
 import {stringify} from "querystring";
-import logger from "../../util/logger";
 
 const login = (email: string, password: string) => {
     const form = {
@@ -15,7 +14,7 @@ const login = (email: string, password: string) => {
         if (res.data.token) {
             xhr.setToken(res.data.token);
             xhr.setCookie(form.csrfmiddlewaretoken, res.data.token);
-        } else logger.err('Login failed.');
+        }
         return res;
     })
 }

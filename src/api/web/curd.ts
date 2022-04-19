@@ -1,4 +1,4 @@
-import xhr from "./xhr";
+import xhr from "../../configs/xhr";
 import { DiaryDate, DiaryMood, DiaryWeather } from "../../configs/types";
 
 const write = (

@@ -1,4 +1,4 @@
-import xhr from "./xhr";
+import xhr from "../../configs/xhr";
 
 const latest = () => (
     xhr.instance.get('/diary/latest/')
