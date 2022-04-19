@@ -1,9 +1,5 @@
 import xhr from "./xhr";
-import logger from "../../util/logger";
-
-type DiaryDate = string;
-type DiaryWeather = string | 'sunny';
-type DiaryMood = string | 'sad';
+import { DiaryDate, DiaryMood, DiaryWeather } from "../../configs/types";
 
 const write = (
     date: DiaryDate,
