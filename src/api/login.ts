@@ -3,11 +3,11 @@ import csrf from "../util/csrf";
 import {stringify} from "querystring";
 import logger from "../util/logger";
 
-const login = (email?: string, password?: string) => {
+const login = (email: string, password: string) => {
     const form = {
         csrfmiddlewaretoken: csrf.randomToken(),
-        email: email ?? process.env.EMAIL,
-        password: password ?? process.env.PASSWORD
+        email: email,
+        password: password
     };
     const qs = stringify(form);
 
