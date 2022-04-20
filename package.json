@@ -8,7 +8,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "push": "git push origin && git push azure"
   },
   "dependencies": {
     "@types/jest": "^27.4.1",

@@ -2,9 +2,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {decode} from 'querystring';
 import Nideriji from "nideriji-api";
+import Types from "../../utils/Types";
+import Err from "../../utils/Err";
+import {createErrResp} from "../../utils";
 
-type Data = any;
+type Data = Types.ProxyResponseData ;
 
+// TODO: Process form-data body, JSON body and query string.
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -16,9 +20,14 @@ export default async function handler(
     ...decode(body)
   };
   if (form.email === '' || form.password === '')
-    return res.status(400).json({msg: 'Email or password is need.'});
-  const resp = await Nideriji.login(form.email, form.password);
-  if (resp.data.error === 1)
-    return res.status(204).json({msg: 'Login failed.', error: 1});
-  else res.status(200).json(resp.data);
+    return res.status(400).json(createErrResp(Err.reqParamNG));
+  try {
+    const resp = await Nideriji.login(form.email, form.password);
+    if (resp.data.error === 1)
+      return res.status(204).json(createErrResp(Err.remoteOpNG));
+    else res.status(200).json(resp.data);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json(createErrResp(Err.loginNG));
+  }
 }
