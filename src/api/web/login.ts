@@ -1,6 +1,12 @@
 import xhr from "../../configs/xhr";
 import csrf from "../../util/csrf";
 import {stringify} from "querystring";
+import configs from "../../configs";
+
+const setHeaders = (csrf: string, token: string) => {
+    xhr.setToken(token);
+    xhr.setCookie(csrf, token);
+}
 
 const login = (email: string, password: string) => {
     const form = {
@@ -12,8 +18,8 @@ const login = (email: string, password: string) => {
 
     return xhr.instance.post('/login/', qs).then(res => {
         if (res.data.token) {
-            xhr.setToken(res.data.token);
-            xhr.setCookie(form.csrfmiddlewaretoken, res.data.token);
+            if (configs.autoSetHeadersAfterLogin)
+                setHeaders(form.csrfmiddlewaretoken, res.data.token);
         }
         return res;
     })
