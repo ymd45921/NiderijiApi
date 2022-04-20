@@ -13,7 +13,8 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
-    "start": "node --require ts-node/register src/index.ts"
+    "start": "node --require ts-node/register src/index.ts",
+    "push": "git push origin && git push azure"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
