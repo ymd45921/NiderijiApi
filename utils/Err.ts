@@ -3,11 +3,11 @@ const Err = {
   loginNG: 'Login failed',
   reqParamNG: 'Incorrect request params',
   remoteOpNG: 'Remote option failed',
-
-  internal: 'Internal server error',
-
   regMatchNG: 'Invalid param format',
 
+  authMiss: 'Missing auth token',
+
+  internal: 'Internal server error',
 }
 
 export default Err;

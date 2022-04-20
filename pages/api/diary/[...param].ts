@@ -7,24 +7,24 @@ import Nideriji from "nideriji-api";
 
 type Data = Types.ProxyResponseData;
 
-// TODO: Add complete date validator
-const dateRegex = /^(((?:19|20)\d\d)-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]))$/
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const {date} = req.query;
-  if (!date || typeof date !== 'string')
-    return res.status(400).json(createErrResp(Err.reqParamNG));
-  if (!date.match(dateRegex))
-    return res.status(400).json(createErrResp(Err.regMatchNG));
-  const [y, m, d] = date.split('-');
+  const param = req.query.param as string[];
   if (!req.headers['auth'] || typeof req.headers['auth'] !== 'string')
     return res.status(403).json(createErrResp(Err.authMiss));
+  const auth = req.headers['auth'];
   try {
-    const resp = await Nideriji.diary.byDate(y, m, d, req.headers['auth']);
-    proxyUpstreamResponseCommon(resp, res, createErrResp(Err.remoteOpNG));
+    if (param.length === 1) {
+      const command = param[0];
+      const resp = await Nideriji.diary.byId(command, auth);
+      proxyUpstreamResponseCommon(resp, res, createErrResp(Err.remoteOpNG));
+    } else if (param.length === 2) {
+      const [y, m] = param;
+      const resp = await Nideriji.diary.byMonth(y, m, auth);
+      proxyUpstreamResponseCommon(resp, res, createErrResp(Err.remoteOpNG));
+    } else res.status(400).json(createErrResp(Err.reqParamNG));
   } catch (e) {
     return proxyErrorHandlerCommon(res, e);
   }
