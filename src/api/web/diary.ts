@@ -1,39 +1,42 @@
 import xhr from "../../configs/xhr";
+import {AuthConfig} from "../../configs/types";
+import {genAuthConfig} from "../../utils";
 
-const latest = () => (
-    xhr.instance.get('/diary/latest/')
+const latest = (auth?: AuthConfig) => (
+    xhr.instance.get('/diary/latest/', genAuthConfig(auth))
 )
 
-const byId = (id: number | string) => (
-    xhr.instance.get(`/diary/${id}/`)
+const byId = (id: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/${id}/`, genAuthConfig(auth))
 )
 
-const byMonth = (y: number | string, m: number | string) => (
-    xhr.instance.get(`/diary/${y}/${m}/`)
+const byMonth = (y: number | string, m: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/${y}/${m}/`, genAuthConfig(auth))
 )
 
-const byDate = (y: number | string, m: number | string, d: number | string) => (
-    xhr.instance.get(`/diary/?date=${y}-${m}-${d}`)
+const byDate = (y: number | string, m: number | string,
+                d: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/?date=${y}-${m}-${d}`, genAuthConfig(auth))
 )
 
-const prev = (id: number | string) => (
-    xhr.instance.get(`/diary/prev/${id}/`)
+const prev = (id: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/prev/${id}/`, genAuthConfig(auth))
 )
 
-const next = (id: number | string) => (
-    xhr.instance.get(`/diary/next/${id}/`)
+const next = (id: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/next/${id}/`, genAuthConfig(auth))
 )
 
-const random = () => (
-    xhr.instance.get(`/diary/random/`)
+const random = (auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/random/`, genAuthConfig(auth))
 )
 
-const all = () => (
-    xhr.instance.get(`/diary/all/`)
+const all = (auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/all/`, genAuthConfig(auth))
 )
 
-const monthList = (y: number | string, m: number | string) => (
-    xhr.instance.get(`/diary/simple_by_month/${y}/${m}/`)
+const monthList = (y: number | string, m: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/simple_by_month/${y}/${m}/`, genAuthConfig(auth))
 )
 
 export default {

@@ -1,8 +1,12 @@
-import { AxiosInstance, AxiosResponse } from "axios";
+import {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 
-export type Instance = AxiosInstance;
+export namespace TypeAlias {
 
-export type Response = AxiosResponse;
+    export type Instance = AxiosInstance;
+    export type Response = AxiosResponse;
+    export type RequestConfig = AxiosRequestConfig<any>;
+
+}
 
 export type DiaryDate = string;
 
@@ -34,3 +38,5 @@ export interface IConfigCallback {
 export type KVMap<K extends string | number | symbol, V> = {[k in K]: V};
 
 export type StringMap<T> = KVMap<string, T>;
+
+export type AuthConfig = TypeAlias.RequestConfig | string;

@@ -1,24 +1,26 @@
 import xhr from "../../configs/xhr";
-import { DiaryDate, DiaryMood, DiaryWeather } from "../../configs/types";
+import {AuthConfig, DiaryDate, DiaryMood, DiaryWeather} from "../../configs/types";
+import {genAuthConfig} from "../../utils";
 
 const write = (
     date: DiaryDate,
     content: string,
     title: string,
     weather: DiaryWeather,
-    mood: DiaryMood
+    mood: DiaryMood,
+    auth?: AuthConfig
 ) => (
     xhr.instance.post(`/write/`, {
         date, content, title, weather, mood
-    })
+    }, genAuthConfig(auth))
 )
 
-const remove = (id: number | string) => (
-    xhr.instance.get(`/diary/delete/${id}/`)
+const remove = (id: number | string, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/delete/${id}/`, genAuthConfig(auth))
 )
 
-const userConfigWeb = () => (
-    xhr.instance.get(`/user/config/`)
+const userConfigWeb = (auth?: AuthConfig) => (
+    xhr.instance.get(`/user/config/`, genAuthConfig(auth))
 )
 
 export default {

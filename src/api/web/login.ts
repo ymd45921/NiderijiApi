@@ -1,5 +1,5 @@
 import xhr from "../../configs/xhr";
-import csrf from "../../util/csrf";
+import csrf from "../../utils/csrf";
 import {stringify} from "querystring";
 import configs from "../../configs";
 
