@@ -9,7 +9,11 @@ let configs: IConfig = {
     ...defaultConfig
 }
 
-let callbackMap: KVMap<IConfigKey, IConfigCallback[]>;
+// TODO: Is there a gramar to initialize this object
+let callbackMap: KVMap<IConfigKey, IConfigCallback[]> = {
+    apiServerURL: [],
+    autoSetHeadersAfterLogin: []
+};
 let callbackArray: IConfigCallback[] = [];
 
 let registeredCallbacks = 0;
