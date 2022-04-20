@@ -1,6 +1,6 @@
 {
   "name": "nideriji-api",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "API of Nideriji and Ohshenghuo.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -18,10 +18,8 @@
     "build:to": "tsc -d --outDir",
     "build:pub": "rimraf ./dist && tsc -d",
     "build:d": "rimraf ./dist && tsc --outdir dist --emitDeclarationOnly",
-    "release": "yarn build:pub && yarn publish",
-    "pub": "yarn release",
     "push": "git push origin && git push azure",
-    "prepublish": "git build:pub"
+    "prepublish": "yarn build:pub"
   },
   "devDependencies": {
     "@types/node": "^17.0.25",

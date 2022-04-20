@@ -1,4 +1,4 @@
-import {IConfig, ConfigCallback, IConfigCallback, IConfigKey, StringMap} from "./types";
+import {IConfig, ConfigCallback, IConfigCallback, IConfigKey, KVMap} from "./types";
 
 const defaultConfig: IConfig = {
     autoSetHeadersAfterLogin: true,
@@ -9,8 +9,7 @@ let configs: IConfig = {
     ...defaultConfig
 }
 
-// TODO: Why Partial<KVMap<IConfigKey, IConfigCallback[]>> is NG?
-let callbackMap: StringMap<IConfigCallback[]> = {};
+let callbackMap: KVMap<IConfigKey, IConfigCallback[]>;
 let callbackArray: IConfigCallback[] = [];
 
 let registeredCallbacks = 0;
@@ -38,7 +37,7 @@ export const config = (config: Partial<IConfig> = defaultConfig) => {
     configs = {...configs, ...config};
     let cbToRunId: number[] = [];
     for (const k in config) {
-        for (const cbo of callbackMap[k])
+        for (const cbo of callbackMap[k as IConfigKey])
             cbToRunId.push(cbo.id);
     }
     cbToRunId = [...new Set(cbToRunId)];
