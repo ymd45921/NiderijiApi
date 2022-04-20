@@ -18,7 +18,11 @@ export default async function handler(
   try {
     if (param.length === 1) {
       const command = param[0];
-      const resp = await Nideriji.diary.byId(command, auth);
+      let call: (auth: string) => ReturnType<typeof Nideriji.diary.byId>;
+      if (command === 'random') call = Nideriji.diary.random;
+      else if (command === 'all') call = Nideriji.diary.all;
+      else call = (auth) => (Nideriji.diary.byId(command, auth));
+      const resp = await call(auth);
       proxyUpstreamResponseCommon(resp, res, createErrResp(Err.remoteOpNG));
     } else if (param.length === 2) {
       const [y, m] = param;
