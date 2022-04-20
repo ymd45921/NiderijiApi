@@ -20,6 +20,10 @@ const setHeader = (k: string, v: string) => {
     instance.defaults.headers.common[k] = v;
 }
 
+const removeHeader = (k: string) => {
+    delete instance.defaults.headers.common[k];
+}
+
 const setHost = (host: string) => instance.defaults.baseURL = host;
 
 subscribe('apiServerURL', cfg => setHost(cfg.apiServerURL));
@@ -30,4 +34,5 @@ export default {
     setCookie,
     setHeader,
     setHost,
+    removeHeader
 }
