@@ -1,6 +1,6 @@
 {
   "name": "nideriji-api",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "API of Nideriji and Ohshenghuo.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
