@@ -40,3 +40,11 @@ export type KVMap<K extends string | number | symbol, V> = {[k in K]: V};
 export type StringMap<T> = KVMap<string, T>;
 
 export type AuthConfig = TypeAlias.RequestConfig | string;
+
+export interface IDiaryParams {
+    date: DiaryDate;
+    content: string;
+    title: string;
+    weather: DiaryWeather;
+    mood: DiaryMood;
+}
