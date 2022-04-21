@@ -8,6 +8,7 @@ const Err = {
   authMiss: 'Missing auth token',
 
   internal: 'Internal server error',
+  notAllow: 'Method not allowed',
 }
 
 export default Err;

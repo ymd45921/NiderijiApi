@@ -1,8 +1,11 @@
+// noinspection JSUnusedLocalSymbols,ES6UnusedImports
+
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import Types from "../../../utils/Types";
 import {createErrResp, proxyErrorHandlerCommon, proxyUpstreamResponseCommon} from "../../../utils";
 import Err from "../../../utils/Err";
+import Nideriji from "nideriji-api";
 
 type Data = Types.ProxyResponseData;
 
@@ -21,4 +24,7 @@ export default async function handler(
   // } catch (e) {
   //   return proxyErrorHandlerCommon(res, e);
   // }
+
+  console.log(Nideriji.instance.defaults.headers);
+  res.status(405).json({error: 1, msg: Err.notAllow})
 }

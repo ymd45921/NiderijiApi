@@ -1,6 +1,7 @@
 import Types from "./Types";
-import {NextApiRequest, NextApiResponse} from "next";
+import {NextApiResponse} from "next";
 import Err from "./Err";
+import * as querystring from "querystring";
 
 export const proxyUpstreamResponseCommon =
   <T extends Types.ProxyResponseData>(
@@ -28,4 +29,10 @@ export const proxyErrorHandlerCommon = (
   const {response} = e as any;
   formatAxiosErrResponse(response);
   res.status(500).json(createErrResp(Err.internal));
+}
+
+export const processFormBody = (body?: string | object): any => {
+  if (typeof body === 'object') return body;
+  else if (typeof body === 'string') return querystring.decode(body);
+  else return {};
 }
