@@ -1,34 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nideriji-api-server
 
-## Getting Started
+基于 `nideriji-api` 的代理服务器，用于解决源服务器不支持 CORS。
 
-First, run the development server:
+## 运行
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+首先你需要安装 Node.js 和 yarn，然后才能运行本项目：
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 运行 `yarn` 安装所需要的依赖
+- 运行 `yarn dev` 启动本地预览
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+可以配合[这里](https://www.postman.com/nnm-shiraha/workspace/public-workspace/collection/20443049-aa93614f-d3b6-4a20-949c-0593de1ad60a?action=share&creator=20443049)的 Postman API 文档进行测试.
