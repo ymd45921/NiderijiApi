@@ -1,5 +1,5 @@
 import xhr from "../../configs/xhr";
-import {AuthConfig} from "../../configs/types";
+import {AuthConfig, DiaryDate} from "../../configs/types";
 import {genAuthConfig} from "../../utils";
 
 const latest = (auth?: AuthConfig) => (
@@ -39,6 +39,10 @@ const monthList = (y: number | string, m: number | string, auth?: AuthConfig) =>
     xhr.instance.get(`/diary/simple_by_month/${y}/${m}/`, genAuthConfig(auth))
 )
 
+const allRange = (count: number, latest?: DiaryDate, auth?: AuthConfig) => (
+    xhr.instance.get(`/diary/all/?latest_date=${latest ?? ''}&count=${count}`, genAuthConfig(auth))
+)
+
 export default {
-    latest, byId, byMonth, prev, next, all, byDate, random, monthList
+    latest, byId, byMonth, prev, next, all, byDate, random, monthList, allRange
 }

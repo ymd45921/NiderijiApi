@@ -1,12 +1,4 @@
-import {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
-
-export namespace TypeAlias {
-
-    export type Instance = AxiosInstance;
-    export type Response = AxiosResponse;
-    export type RequestConfig = AxiosRequestConfig<any>;
-
-}
+import TypeAlias from "./typeAlias";
 
 export type DiaryDate = string;
 
