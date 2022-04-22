@@ -11,10 +11,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const {latest_date, count} = req.query;
   if (!req.headers['auth'] || typeof req.headers['auth'] !== 'string')
     return res.status(403).json(createErrResp(Err.authMiss));
+  if ((latest_date && typeof latest_date !== 'string') ||
+    (count && typeof count !== 'string'))
+    return res.status(400).json(createErrResp(Err.reqParamNG));
+  const auth = req.headers['auth'];
   try {
-    const resp = await Nideriji.diary.latest(req.headers['auth']);
+    const resp = await (!latest_date && !count ? Nideriji.diary.all(auth)
+      : Nideriji.diary.allRange(count as unknown as number, latest_date, auth));
     proxyUpstreamResponseCommon(resp, res, createErrResp(Err.remoteOpNG));
   } catch (e) {
     return proxyErrorHandlerCommon(res, e);

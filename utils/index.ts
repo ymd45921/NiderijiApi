@@ -31,6 +31,8 @@ export const proxyErrorHandlerCommon = (
   res.status(500).json(createErrResp(Err.internal));
 }
 
+// Process json body and urlencoded.
+// TODO: Parse multiparty/form-data
 export const processFormBody = (body?: string | object): any => {
   if (typeof body === 'object') return body;
   else if (typeof body === 'string') return querystring.decode(body);
