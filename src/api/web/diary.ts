@@ -39,7 +39,7 @@ const monthList = (y: number | string, m: number | string, auth?: AuthConfig) =>
     xhr.instance.get(`/diary/simple_by_month/${y}/${m}/`, genAuthConfig(auth))
 )
 
-const allRange = (count: number, latest?: DiaryDate, auth?: AuthConfig) => (
+const allRange = (count: number | string, latest?: DiaryDate, auth?: AuthConfig) => (
     xhr.instance.get(`/diary/all/?latest_date=${latest ?? ''}&count=${count}`, genAuthConfig(auth))
 )
 
