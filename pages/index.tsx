@@ -74,7 +74,11 @@ const Home: NextPage = () => {
 
           <div className={styles.card}>
             <h2>友情链接</h2>
-            <p><a href={'https://webify.cloudbase.net/'}>CloudBase Webify</a> 提供网站托管服务</p>
+            {/*<p><a href={'https://webify.cloudbase.net/'}>CloudBase Webify</a> 提供网站托管服务</p>*/}
+            <p>
+              <a href={'https://nextjs.org'}>Next.js</a>&nbsp;·&nbsp;
+              <a href={'https://vercel.com'}>Vercel</a>
+            </p>
           </div>
         </div>
       </main>
