@@ -1,6 +1,5 @@
 import xhr from "../../configs/xhr";
 import csrf from "../../utils/csrf";
-import {stringify} from "querystring";
 import configs from "../../configs";
 
 const setHeaders = (csrf: string, token: string) => {
@@ -14,9 +13,9 @@ const login = (email: string, password: string) => {
         email: email,
         password: password
     };
-    const qs = stringify(form);
+    const qs = new URLSearchParams(form);
 
-    return xhr.instance.post('/login/', qs).then(res => {
+    return xhr.instance.post('/login/', qs.toString()).then(res => {
         if (res.data.token) {
             if (configs.autoSetHeadersAfterLogin)
                 setHeaders(form.csrfmiddlewaretoken, res.data.token);

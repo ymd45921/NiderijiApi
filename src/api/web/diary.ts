@@ -10,8 +10,14 @@ const byId = (id: number | string, auth?: AuthConfig) => (
     xhr.instance.get(`/diary/${id}/`, genAuthConfig(auth))
 )
 
+/**
+ *
+ * @deprecated Legacy
+ * This API is removed.
+ */
 const byMonth = (y: number | string, m: number | string, auth?: AuthConfig) => (
-    xhr.instance.get(`/diary/${y}/${m}/`, genAuthConfig(auth))
+    // xhr.instance.get(`/diary/${y}/${m}/`, genAuthConfig(auth))
+    monthList(y, m, auth)
 )
 
 const byDate = (y: number | string, m: number | string,

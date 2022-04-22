@@ -1,7 +1,6 @@
 import xhr from "../../configs/xhr";
 import {AuthConfig, DiaryDate, DiaryMood, DiaryWeather, IDiaryParams} from "../../configs/types";
 import {genAuthConfig} from "../../utils";
-import {stringify} from "querystring";
 
 const _write = (
     date: DiaryDate,
@@ -11,9 +10,9 @@ const _write = (
     mood: DiaryMood,
     auth?: AuthConfig
 ) => (
-    xhr.instance.post(`/write/`, stringify({
+    xhr.instance.post(`/write/`, new URLSearchParams({
         date, content, title, weather, mood
-    }), genAuthConfig(auth))
+    }).toString(), genAuthConfig(auth))
 )
 
 function write(
