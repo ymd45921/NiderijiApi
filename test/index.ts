@@ -5,6 +5,7 @@ require('dotenv').config();
 Nideriji.config({
     apiServerURL: 'https://nideriji.cn/api'
 });
+// Nideriji.setHost('https://nideriji-api.vercel.app/api');
 
 const testDiary: IDiaryParams = {
     date: '2019-02-01',

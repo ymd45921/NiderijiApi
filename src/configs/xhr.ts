@@ -24,7 +24,7 @@ const removeHeader = (k: string) => {
     delete instance.defaults.headers.common[k];
 }
 
-const setHost = (host: string) => instance.defaults.baseURL = host;
+const setHost = (host: string) => instance.defaults.baseURL = configs.apiServerURL = host;
 
 subscribe('apiServerURL', cfg => setHost(cfg.apiServerURL));
 
