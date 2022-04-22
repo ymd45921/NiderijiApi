@@ -2947,10 +2947,10 @@ next@12.1.5:
     "@next/swc-win32-ia32-msvc" "12.1.5"
     "@next/swc-win32-x64-msvc" "12.1.5"
 
-nideriji-api@0.2.11-alpha.1:
-  version "0.2.11-alpha.1"
-  resolved "https://registry.yarnpkg.com/nideriji-api/-/nideriji-api-0.2.11-alpha.1.tgz#07a6ee39cd2ae09e83ce9e592ab4a742fa319ce7"
-  integrity sha512-nIbNC9OenKF3722ib2X5s6wSgHZQydpLAD7fxrjPk1GvGhoS0gJJdBhd1kFfIvRJWeSLKjzgq/HAiHZuX8iaCg==
+nideriji-api@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/nideriji-api/-/nideriji-api-0.3.1.tgz#bca85f9e5c0c76cae3f26814748f73b2b970a68a"
+  integrity sha512-BogDrWCYYV1LDQlPqlDk3s7MYkFtYHPvQ/GzrYnfiYYDgbrnuBkvG1ZxaJ0kXVBM6UIexFu7/k6QhSGdd5K4Hw==
   dependencies:
     axios "^0.26.1"
 
